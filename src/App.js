@@ -16,7 +16,7 @@ function App() {
 
       <main className="main">
         <section className="hero">
-          <h2>Welcome to Our Webpage</h2>
+          <h2>Welcome to Cloud Computing Class</h2>
           <p>Building something amazing, one step at a time.</p>
           <button className="cta-button">Get Started</button>
         </section>

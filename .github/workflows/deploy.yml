@@ -1,28 +1,22 @@
 name: Deploy to AWS S3
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Project CI Pipeline"]
+    types:
+      - completed
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
         with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build React app
-        run: npm run build
+          name: build-folder
+          path: build
 
       - name: Sync build folder to S3
         uses: jakejarvis/s3-sync-action@master

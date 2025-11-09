@@ -24,4 +24,3 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_DIR: "./src"
 
-
